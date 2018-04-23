@@ -10,9 +10,6 @@
  * Text Domain: lam
  */
 
-/**
- * NOTE: "LAM" IS JUST AN ACRONYM FOR: LIIP AUTHOR MANAGER
- */
 define( 'LB2PDF_VERSION' ,     '1.0.0' );
 define( 'LB2PDF_PLUGIN_FILE',  __FILE__ );
 define( 'LB2PDF_PLUGIN_URL',   untrailingslashit( plugin_dir_url( __FILE__ ) ) );
@@ -31,10 +28,11 @@ if ( isset( $_GET['task'] ) && isset( $_GET['pid'] ) ) {
 	if($_GET['task'] == 'pdf') {
 		# AND WE HAVE A POST (BASED ON THE QUERY PARAM: pid), WE CAN PROCEED WITH PDF GENERATION...
 		if ( $post = get_post( $_GET['pid'] ) ) {
-			$arrHTMLData    = $pdfHelper->getHTMLMarkupForPDFRendering($post);
+			$arrHTMLData                = $pdfHelper->getHTMLMarkupForPDFRendering($post);
+			$arrHTMLData['permalink']   = get_permalink($post);
 
 			# GENERATE AND SAVE THE PDF FILE....
-			$pdfHelper->generateAndSavePDF($arrHTMLData['outPut'], $arrHTMLData['pdfFileName'], $arrHTMLData['pdfFileURL']);
+			$pdfHelper->generateAndSavePDF($arrHTMLData, true);
 		}
 	}
 }
