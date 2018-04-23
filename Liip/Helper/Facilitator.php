@@ -111,9 +111,9 @@ MKP;
 	<body>
 	    {$banner}
 	    <div class='post full-post type-post status-publish format-standard has-post-thumbnail pz-main'>
-	    {$outPut}
-	    {$entryMeta}
-	    {$authorProfile}
+		    {$outPut}
+		    {$entryMeta}
+		    {$authorProfile}
 	    </div>
 	</body	
 </html>
